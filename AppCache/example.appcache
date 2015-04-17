@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# v6
+images/cache.png
+images/cache2.png
+
+FALLBACK:
+images/firefox.png images/cache3.png
+
+#NETWORK:
+#*
