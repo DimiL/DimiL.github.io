@@ -3,7 +3,7 @@
 var element = document.getElementById("log");
 
 if ('serviceWorker' in navigator) {
-  element.innerHTML = "with service worker";
+  element.innerHTML += "with service worker";
 } else {
-  element.innerHTML = "without service worker";
+  element.innerHTML += "without service worker";
 }
