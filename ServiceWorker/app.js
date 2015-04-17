@@ -1,9 +1,13 @@
 // register service worker
 
-var element = document.getElementById("log");
-
 if ('serviceWorker' in navigator) {
-  element.innerHTML += "with service worker";
+  console.log("With service worker");
+  navigator.serviceWorker.register('./imgs/sw.js').then(function(reg) {
+    console.log('Registration succeeded. Scope is ' + reg.scope);
+  });
+//  navigator.serviceWorker.register('./imgs/sw2.js').then(function(reg) {
+//    console.log('Registration succeeded. Scope is ' + reg.scope);
+//  });
 } else {
-  element.innerHTML += "without service worker";
+  console.log("Without service worker");
 }
