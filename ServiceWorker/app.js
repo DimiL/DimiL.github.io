@@ -1,6 +1,8 @@
 // register service worker
 
-var logger = document.getElementById("log");
+var element = document.getElementById("log");
+element.innerHTML = "New Header";
+//var logger = document.getElementById("log");
 
 /*
 if ('serviceWorker' in navigator) {
