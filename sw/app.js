@@ -2,7 +2,7 @@
 
 if ('serviceWorker' in navigator) {
   console.log("With service worker");
-  navigator.serviceWorker.register('./sw.js').then(function(reg) {
+  navigator.serviceWorker.register('https://dimil.github.io/sw/sw.js').then(function(reg) {
     console.log('Registration succeeded. Scope is ' + reg.scope);
   });
 } else {
