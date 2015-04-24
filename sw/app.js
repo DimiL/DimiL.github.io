@@ -1,5 +1,6 @@
 // register service worker
 
+
 if ('serviceWorker' in navigator) {
   console.log("With service worker");
 //  navigator.serviceWorker.register('https://dimil.github.io/sw/sw.js').then(function(reg) {
