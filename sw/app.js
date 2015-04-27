@@ -1,5 +1,5 @@
 // register service worker
-
+console.log("Dimi...run app.js");
 
 if ('serviceWorker' in navigator) {
   console.log("With service worker");
