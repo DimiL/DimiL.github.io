@@ -3,22 +3,15 @@ console.log("[SW]running");
 this.addEventListener('install', function(event) {
   console.log("[SW]install");
   var urlsToCache = [
-    '/',
-    '/ServiceWorker/',
-    '/ServiceWorker/imgs',
-    '/ServiceWorker/imgs/cache.png'
+    '/imgs/f1.png',
   ];
 
-  event.waitUntil(
-    caches.open('v1'));
-/*
   event.waitUntil(
     caches.open('v1').then(function(cache) {
       console.log("cache add");
       return cache.addAll(urlsToCache);
     })
   );
-*/
 });
 
 this.addEventListener('fetch', function(event) {
