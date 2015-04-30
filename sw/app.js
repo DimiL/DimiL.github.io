@@ -1,6 +1,7 @@
 // register service worker
 console.log("Dimi...run app.js");
 
+/*
 if ('serviceWorker' in navigator) {
   console.log("With service worker");
 //  navigator.serviceWorker.register('https://dimil.github.io/sw/monitor/sw.js').then(function(reg) {
@@ -11,4 +12,14 @@ if ('serviceWorker' in navigator) {
   });
 } else {
   console.log("Without service worker");
+}
+*/
+
+if (!!window.SharedWorker) {
+  console.log("With shared workers >>");
+  var myWorker = new SharedWorker("/sw/worker/worker.js");
+  myWorker.port.start();
+  console.log("With shared workers <<");
+} else {
+  console.log("Without shared workers...");
 }
