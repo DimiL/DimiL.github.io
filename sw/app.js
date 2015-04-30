@@ -19,7 +19,13 @@ if (!!window.SharedWorker) {
   console.log("With shared workers >>");
   var myWorker = new SharedWorker("/sw/worker/worker.js");
   myWorker.port.start();
+  myWorker.port.postMessage([9,8]);
+  console.log('Message posted to worker');
   console.log("With shared workers <<");
+
+  myWorker.port.onmessage = function(e) {
+    console.log('Message received from worker = ' + e.data);
+  }
 } else {
   console.log("Without shared workers...");
 }
