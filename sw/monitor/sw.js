@@ -15,7 +15,7 @@ this.addEventListener('install', function(event) {
 });
 
 this.addEventListener('fetch', function(event) {
-  console.log("[SW]fetch : " + JSON.stringify(event.request));
+  console.log("[SW]fetch v1 : " + JSON.stringify(event.request));
   event.respondWith(new Response("Hello world!"));
 /*
   var cachedResponse = caches.match(event.request).then(function(r) {
