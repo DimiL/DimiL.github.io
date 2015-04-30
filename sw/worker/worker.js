@@ -7,6 +7,9 @@ onconnect = function(e) {
   var port = e.ports[0];
   port.onmessage = function(e) {
     console.log("shared worker before calculate " + tmp);
+    console.log("add cache >>>");
+    caches.addAll(["/"]);
+    console.log("add cache <<<");
     tmp = e.data[0] * e.data[1];
     var workerResult = 'Result: ' + (e.data[0] * e.data[1]);
     console.log("shared worker calculate " + workerResult);
