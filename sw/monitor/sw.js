@@ -16,12 +16,14 @@ this.addEventListener('install', function(event) {
 
 this.addEventListener('fetch', function(event) {
   console.log("[SW]fetch : " + JSON.stringify(event.request));
-
+  event.respondWith(new Response("Hello world!"));
+/*
   var cachedResponse = caches.match(event.request).then(function(r) {
     console.log("[SW]fetch ok, response = " + JSON.stringify(r));
   }).catch(function() {
     console.log("[SW]fetch not ok");
   });
+*/
 /*
   var response;
   var cachedResponse = caches.match(event.request).catch(function() {
