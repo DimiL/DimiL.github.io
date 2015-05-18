@@ -1,12 +1,20 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Service Worker Test2</title>
-  </head>
+	<head>
+		<meta charset="utf-8">
+		<title>Service Worker B2G Test</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <script>
+      navigator.serviceWorker.onmessage = function (e) {
+        console.log("INITIAL HANDLER GOT: " + e.data);
+      }
+      window.onmessage = function(e) {
+        console.log("INITIAL HANDLER GOT: " + e.data);
+      }
+    </script>
+		<script defer src="test.js"></script>
+	</head>
   <body>
-    <script src="/sw/app.js"></script>
-<!--    <a href="http://dimil.github.io/sw/monitor/index.html">Enter ServiceWorker's Page v2</a> -->
-    <a href="http://dimil.github.io/sw/test.html">Enter ServiceWorker's Page v2</a>
-    <img src="/sw/monitor/imgs/f1.png">
-    <img src="/sw/monitor/f2.png">
-  </body>
+    <h3>Service Worker B2G Test</h3>
+	</body>
 </html>
