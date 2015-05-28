@@ -1,0 +1,14 @@
+{
+  "version": "0.1",
+  "name": "ServiceWorker",
+  "description": "Service worker test",
+  "launch_path": "/sw/",
+  "icons": {
+    "128": "/sw/style/icons/sw.png"
+  },
+  "developer": {
+    "name": "Dimi",
+    "url": "http://dimil.github.io"
+  },
+  "installs_allowed_from": ["*"]
+}
