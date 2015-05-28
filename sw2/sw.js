@@ -1,59 +1,14 @@
+importScripts('sw/sww.js');
+importScripts('sw/sww-raw-cache.js');
 
-console.log("[Dimi]SW runnning " + this + " " + JSON.stringify(this));
+// Render Cache
+var worker = new ServiceWorkerWare(/*We can add a 'resolver' in the near future*/);
 
-function debug(msg) {
-  console.log("[Dimiv2]" + ' Service Worker ' + msg);
-}
-
-var _client;
-
-function client() {
-  if (_client) {
-    debug('have _client: ' + _client.id);
-    return Promise.resolve(_client);
-  }
-  return self.clients.matchAll().then(function(clients) {
-    debug("LENGTH:" +clients.length);
-    if (!clients.length) {
-      return Promise.reject();
-    }
-    _client = clients[0];
-    return _client;
-  });
-}
-
-this.addEventListener('install', function(e) {
-  debug('oninstall ' + e + '>>' + JSON.stringify(e));
+// The render cache improves the performance of the most expensive part of
+// the app by caching the rendered view for the specific movie.
+worker.use('.*', new RawCache({ cacheName: 'RenderCache' }));
+worker.use('.*', function (req, res) {
+  return res ? Promise.resolve(res) : fetch(req);
 });
 
-this.addEventListener('activate', function() {
-  debug('onactivate');
-});
-
-this.addEventListener('fetch', function(e) {
-
-  debug("client: " + e.client);
-  debug('onfetch ' + e.request.url);
-  client().then(function(c) {
-    debug('CLIENT ' + c);
-    c.postMessage('using client before receiving message');
-  });
-});
-
-this.addEventListener('message', function(msg) {
-/*
-  debug('GOT MESSAGE ' + msg.data + ", from=" + msg.source.id);
-
-  client().then(function(c) {
-    debug('CLIENT WITHIN MESSAGE HANDLER ' + c);
-    //c.postMessage('using client after receiving message');
-  });
-  if (msg.source) {
-    //msg.source.postMessage('using msg.source');
-  } else {
-    debug("msg.source is null");
-  }
-*/
-});
-
-console.log("[Dimi]SW runnning 2 " + this + " " + JSON.stringify(this));
+worker.init();

@@ -1,31 +1,58 @@
-// register service worker
-console.log("Dimi...run app.js");
+var isOriginalUI;
 
-/*
-if ('serviceWorker' in navigator) {
-  console.log("With service worker");
-//  navigator.serviceWorker.register('https://dimil.github.io/sw/monitor/sw.js').then(function(reg) {
-    navigator.serviceWorker.register('./monitor/sw.js').then(function(reg) {
-    console.log('Registration succeeded. Scope is ' + reg.scope);
-  }).catch((err) => {
-    console.log('Registration fail : ' + JSON.stringify(err));
-  });
-} else {
-  console.log("Without service worker");
-}
-*/
-
-if (!!window.SharedWorker) {
-  console.log("With shared workers >>");
-  var myWorker = new SharedWorker("/sw/worker/worker.js");
-  myWorker.port.start();
-  myWorker.port.postMessage([9,8]);
-  console.log('Message posted to worker');
-  console.log("With shared workers <<");
-
-  myWorker.port.onmessage = function(e) {
-    console.log('Message received from worker = ' + e.data);
+function loadView(isOriginalUI) {
+  if (isOriginalUI) {
+    document.getElementById('detail-iframe').src = 'view/original-detail/index.html';
+    document.getElementById('list-iframe').src = 'view/original-list/index.html';
+  } else {
+    document.getElementById('detail-iframe').src = 'view/detail/index.html';
+    document.getElementById('list-iframe').src = 'view/list/index.html';
   }
-} else {
-  console.log("Without shared workers...");
+}
+
+
+function register() {
+  navigator.serviceWorker.register('sw.js').then(function() {
+    console.log('SW Registered properly!');
+    window.location.reload();
+  });
+
+}
+
+window.onload = function() {
+  // Register SW if needed
+  navigator.serviceWorker.getRegistration().then(function(req) {
+    if (!req) {
+      register();
+    } else {
+      // Boot the navigation
+      var client = threads.client('navigation-service');
+      // Render the right panels based on the configuration
+      isOriginalUI = Config.originalUI;
+      loadView(isOriginalUI);
+
+      // Listen about requests of navigation
+      client.method('registerContentWrapper', client.id);
+      client.on('navigate', function(params) {
+        Navigation.go(params.from, params.to, params.effect).then(function() {
+          // TODO Remove me when Navigation will be ready
+          if (params.to !== 'list') {
+            document.querySelector('#change-view-button').style.display = 'none';
+          } else {
+            document.querySelector('#change-view-button').style.display = 'block';
+          }
+          client.method('navigationend');
+        });
+      });
+
+      // Add listeners for 'tap' actions in the list
+      document.querySelector('#change-view-button').addEventListener(
+        'click',
+        function() {
+          isOriginalUI = !isOriginalUI;
+          loadView(isOriginalUI);
+        }
+      );
+    }
+  })
 }

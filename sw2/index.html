@@ -1,20 +1,39 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Service Worker B2G Test</title>
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
-    <script>
-      navigator.serviceWorker.onmessage = function (e) {
-        console.log("INITIAL HANDLER GOT: " + e.data);
-      }
-      window.onmessage = function(e) {
-        console.log("INITIAL HANDLER GOT: " + e.data);
-      }
-    </script>
-		<script defer src="test.js"></script>
-	</head>
-  <body>
-    <h3>Service Worker B2G Test</h3>
-	</body>
+<html lang="en">
+<head>
+  <title>Contacts Prototype</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'> -->
+  <link rel="stylesheet" type="text/css" href="reset.css">
+  <link rel="stylesheet" type="text/css" href="navigation.css">
+  <link rel="stylesheet" type="text/css" href="app.css">
+
+  <script src="app/libs/components/threads/threads.js"></script>
+  <script src="config.js"></script>
+  <script src="threads-manager.js"></script>
+  <script src="navigation.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <button id="change-view-button"></button>
+  <div id="list" class="panel main">
+    <iframe id="list-iframe" src="">
+    </iframe>
+  </div>
+  <div id="detail" class="panel">
+    <iframe id="detail-iframe" src="">
+    </iframe>
+  </div>
+  <div id="settings" class="panel">
+    <iframe id="settings-iframe" src="view/settings/index.html">
+    </iframe>
+  </div>
+
+  <section id="mirror-current" class="mirror">
+  </section>
+  <section id="mirror-future" class="mirror">
+  </section>
+</body>
 </html>
