@@ -8,6 +8,7 @@ function debug(msg) {
 var _client;
 
 function client() {
+/*
   if (_client) {
     debug('have _client: ' + _client.id);
     return Promise.resolve(_client);
@@ -20,6 +21,7 @@ function client() {
     _client = clients[0];
     return _client;
   });
+*/
 }
 
 this.addEventListener('install', function(e) {
@@ -31,16 +33,19 @@ this.addEventListener('activate', function() {
 });
 
 this.addEventListener('fetch', function(e) {
-
+  debug('onfetch');
+/*
   debug("client: " + e.client);
   debug('onfetch ' + e.request.url);
   client().then(function(c) {
     debug('CLIENT ' + c);
     c.postMessage('using client before receiving message');
   });
+*/
 });
 
 this.addEventListener('message', function(msg) {
+  debug('onmessage');
 /*
   debug('GOT MESSAGE ' + msg.data + ", from=" + msg.source.id);
 
@@ -55,5 +60,3 @@ this.addEventListener('message', function(msg) {
   }
 */
 });
-
-console.log("[Dimi]SW runnning 2 " + this + " " + JSON.stringify(this));
