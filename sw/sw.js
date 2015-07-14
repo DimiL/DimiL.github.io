@@ -33,7 +33,7 @@ this.addEventListener('activate', function() {
 });
 
 this.addEventListener('fetch', function(e) {
-  debug('onfetch');
+  debug('onfetch123');
 /*
   debug("client: " + e.client);
   debug('onfetch ' + e.request.url);
