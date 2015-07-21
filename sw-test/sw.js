@@ -1,6 +1,6 @@
 this.addEventListener('install', function(event) {
   console.log("[Dimi]install event v2");
-/*
+
   event.waitUntil(
     caches.open('v1').then(function(cache) {
       return cache.addAll([
@@ -16,7 +16,6 @@ this.addEventListener('install', function(event) {
       ]);
     })
   );
-*/
 });
 
 this.addEventListener('activate', function() {
@@ -33,7 +32,7 @@ this.addEventListener('fetch', function(event) {
     response = r;
     caches.open('v1').then(function(cache) {
       cache.put(event.request, response);
-    });  
+    });
     return response.clone();
   }).catch(function() {
     return caches.match('/sw-test/gallery/myLittleVader.jpg');
