@@ -24,7 +24,6 @@ this.addEventListener('activate', function() {
 
 this.addEventListener('fetch', function(event) {
   console.log("[Dimi]fetch event");
-/*
   var response;
   var cachedResponse = caches.match(event.request).catch(function() {
     return fetch(event.request);
@@ -37,5 +36,4 @@ this.addEventListener('fetch', function(event) {
   }).catch(function() {
     return caches.match('/sw-test/gallery/myLittleVader.jpg');
   });
-*/
 });
