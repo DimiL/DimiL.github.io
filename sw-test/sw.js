@@ -1,5 +1,5 @@
 this.addEventListener('install', function(event) {
-  console.log("[Dimi]install event v4");
+  console.log("[Dimi]install event v5");
 
   event.waitUntil(
     caches.open('v1').then(function(cache) {
@@ -19,7 +19,7 @@ this.addEventListener('install', function(event) {
 });
 
 this.addEventListener('activate', function() {
-  console.log('[Dimi]activate event');
+  console.log('[Dimi]activate event v1');
 });
 
 this.addEventListener('fetch', function(event) {
