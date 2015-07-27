@@ -7,6 +7,5 @@ this.addEventListener('activate', function() {
 });
 
 this.addEventListener('fetch', function(event) {
-  console.log("[Dimi]fetch event request: " + JSON.stringify(event));
   console.log("[Dimi]fetch event request: " + event.request.url);
 });
