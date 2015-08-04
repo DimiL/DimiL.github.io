@@ -24,6 +24,7 @@ this.addEventListener('activate', function() {
 
 this.addEventListener('fetch', function(event) {
   console.log("[Dimi]fetch event : " + event.request.url);
+  var context_new = (new Request(event.request)).context;
   var response;
   var cachedResponse = caches.match(event.request).catch(function() {
     return fetch(event.request);
