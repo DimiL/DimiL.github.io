@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Service Worker B2G Test</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/div/sw.js', { scope: '/div/' }).then(function(reg) {
+        // registration worked
+          console.log('Registration succeeded. Scope is ' + reg.scope);
+        }).catch(function(error) {
+          // registration failed
+          console.log('Registration failed with ' + error);
+        });
+      };
+    </script>
+    <script src="/div/div.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h3>Service Worker B2G Test</h3>
+  </body>
+</html>
