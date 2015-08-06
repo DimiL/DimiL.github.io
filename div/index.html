@@ -15,9 +15,16 @@
         });
       };
     </script>
-    <script src="/div/div.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <h3>Service Worker B2G Test</h3>
   </body>
+    <script>
+      console.log("Dimi...run script\n");
+      var url = "/div/div.jpg";
+      var type = "backgroundImage";
+      var div = document.createElement('div');
+      document.body.appendChild(div);
+      div.style[type] = 'url(' + url + ')';
+    </script>
 </html>
