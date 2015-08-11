@@ -11,10 +11,16 @@
       window.onmessage = function(e) {
         console.log("INITIAL HANDLER GOT: " + e.data);
       }
+
+      function myFunction() {
+        var manifestUrl = 'http://dimil.github.io/sw/manifest.webapp';
+        navigator.mozApps.test(manifestUrl);
+      }
     </script>
 		<script defer src="test.js"></script>
 	</head>
   <body>
     <h3>Service Worker B2G Test</h3>
-	</body>
+    <button onclick="myFunction()">Click me to "ClearBrowserData"</button>
+  </body>
 </html>
