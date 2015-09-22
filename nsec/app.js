@@ -1,7 +1,7 @@
 // register service worker
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/nsec/sw.js', { scope: '/nsec/' }).then(function(reg) {
+  navigator.serviceWorker.register('https://dimil.github.io/sw-test/sw.js', { scope: 'https://dimil.github.io/sw-test/' }).then(function(reg) {
     
     if(reg.installing) {
       console.log('Service worker installing');
