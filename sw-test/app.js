@@ -1,6 +1,7 @@
 // register service worker
 
 if ('serviceWorker' in navigator) {
+  console.log('[Dimi]serviceWorker in navigator');
   navigator.serviceWorker.register('/sw-test/sw.js', { scope: '/sw-test/' }).then(function(reg) {
     
     if(reg.installing) {
@@ -15,7 +16,7 @@ if ('serviceWorker' in navigator) {
     // registration failed
     console.log('Registration failed with ' + error);
   });
-};
+}
 
 // function for loading each image via XHR
 
