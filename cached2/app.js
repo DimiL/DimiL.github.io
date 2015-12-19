@@ -2,7 +2,7 @@
 
 if ('serviceWorker' in navigator) {
   console.log('[Dimi]serviceWorker in navigator');
-  navigator.serviceWorker.register('/cache/sw.js', { scope: '/cache/' }).then(function(reg) {
+  navigator.serviceWorker.register('/cached2/sw.js', { scope: '/cached2/' }).then(function(reg) {
     
     if(reg.installing) {
       console.log('Service worker installing');
