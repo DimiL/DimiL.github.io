@@ -22,6 +22,11 @@ this.addEventListener('install', function(event) {
 this.addEventListener('fetch', function(event) {
   console.log("[Dimi][App]Fetch 1>>");
   var response;
+
+  cache.addAll([
+        '/sw-test/index.html'
+      ]);
+
   event.respondWith(caches.match(event.request).catch(function() {
     return fetch(event.request);
   }));
