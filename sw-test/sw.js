@@ -1,5 +1,4 @@
 this.addEventListener('install', function(event) {
-/*
   event.waitUntil(
     caches.open('v1').then(function(cache) {
       return cache.addAll([
@@ -16,16 +15,17 @@ this.addEventListener('install', function(event) {
       ]);
     })
   );
-*/
 });
 
 this.addEventListener('fetch', function(event) {
   console.log("[Dimi][App]Fetch 1>>");
   var response;
 
-  cache.addAll([
-        '/sw-test/index.html'
+    caches.open('v1').then(function(cache) {
+      return cache.addAll([
+        '/sw-test/style.css'
       ]);
+    });
 
   event.respondWith(caches.match(event.request).catch(function() {
     return fetch(event.request);
