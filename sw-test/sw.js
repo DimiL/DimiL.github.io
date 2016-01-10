@@ -18,7 +18,7 @@ this.addEventListener('install', function(event) {
 });
 
 this.addEventListener('fetch', function(event) {
-  console.log("[Dimi][App]Fetch 1>>");
+  console.log("[Dimi][App]Fetch 2>>");
   var response;
 
     caches.open('v1').then(function(cache) {
