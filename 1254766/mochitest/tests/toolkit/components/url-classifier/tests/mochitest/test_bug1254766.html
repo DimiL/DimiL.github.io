@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Bug 1272239 - Test gethash.</title>
+  <title>Bug 1254766 - Stop caching Safe Browsing completions to disk.</title>
   <script type="text/javascript" src="/tests/SimpleTest/SimpleTest.js"></script>
   <script type="text/javascript" src="classifierHelper.js"></script>
   <link rel="stylesheet" type="text/css" href="/tests/SimpleTest/test.css" />
@@ -14,6 +14,8 @@
 <pre id="test">
 
 <script class="testbody" type="text/javascript">
+
+dump("[Dimi]Begin...\n");
 
 const MALWARE_LIST = "test-malware-simple";
 const MALWARE_HOST1 = "malware.example.com/";
@@ -36,6 +38,7 @@ var gCurGethashCounter = 0;
 var expectLoad = false;
 
 function loadTestFrame() {
+  dump("[Dimi]loadTestFrame\n");
   return new Promise(function(resolve, reject) {
     var iframe = document.createElement("iframe");
     iframe.setAttribute("src", "gethashFrame.html");
@@ -66,6 +69,7 @@ function getGethashCounter() {
 
 // calculate the fullhash and send it to gethash server
 function addCompletionToServer(list, url) {
+  dump("[Dimi]addCompletionToServer\n");
   return new Promise(function(resolve, reject) {
     var listParam = "list=" + list;
     var fullhashParam = "fullhash=" + hash(url);
@@ -74,6 +78,7 @@ function addCompletionToServer(list, url) {
     xhr.open("PUT", GETHASH_URL + "?" + listParam + "&" + fullhashParam, true);
     xhr.setRequestHeader("Content-Type", "text/plain");
     xhr.onreadystatechange = function() {
+      dump("[Dimi]XHR ready...\n");
       if (this.readyState == this.DONE) {
         resolve();
       }
@@ -104,6 +109,7 @@ function hash(str) {
 // setup function allows classifier send gethash request for test database
 // also it calculate to fullhash for url and store those hashes in gethash sjs.
 function setup() {
+  dump("[Dimi]setup...\n");
   classifierHelper.allowCompletion([MALWARE_LIST, UNWANTED_LIST], GETHASH_URL);
 
   return Promise.all([
@@ -171,6 +177,7 @@ function update(prefix = false) {
 // 4. Load test frame again, since completions is stored in cache now, no gethash
 //    request should be triggered.
 function testGethash() {
+  dump("[Dimi]testGethash\n");
   return Promise.resolve()
     .then(addPrefixToDB)
     .then(loadTestFrame)
@@ -188,6 +195,7 @@ function testGethash() {
 // 3. Trigger an update, completion cache should be cleared now.
 // 4. Load test frame again, since cache is cleared now, gethash request should be triggered.
 function testUpdateClearCache() {
+  dump("[Dimi]testUpdateClearCache\n");
   return Promise.resolve()
     .then(addPrefixToDB)
     .then(loadTestFrame)
@@ -205,6 +213,7 @@ function testUpdateClearCache() {
 // 2. Load test frame, since completions is stored in DB, gethash request should
 //    not be triggered.
 function testUpdate() {
+  dump("[Dimi]testUpdateUpdate\n");
   return Promise.resolve()
     .then(addCompletionToDB)
     .then(loadTestFrame)
@@ -220,6 +229,7 @@ function testUpdate() {
 // 3. Trigger an update, cache is cleared, but completions in DB should still remain.
 // 4. Load test frame again, since completions is in DB, gethash request should not be triggered.
 function testUpdateNotClearCompletions() {
+  dump("[Dimi]testUpdateNotClearCompletions\n");
   return Promise.resolve()
     .then(addCompletionToDB)
     .then(loadTestFrame)
@@ -238,6 +248,7 @@ function testUpdateNotClearCompletions() {
 // 3. Load test frame, since completions should be loaded from DB, no gethash request should
 //    be triggered.
 function testUpdateCompletionsAfterReload() {
+  dump("[Dimi]testUpdateCompletionsAfterReload\n");
   return Promise.resolve()
     .then(addCompletionToDB)
     .then(classifierHelper.reloadDatabase)
@@ -255,6 +266,7 @@ function testUpdateCompletionsAfterReload() {
 // 4. Simulate firefox restart by calling reloadDatabase.
 // 5. Load test frame again, since cache is cleared, gethash request should be triggered.
 function testGethashCompletionsAfterReload() {
+  dump("[Dimi]testGethashCompletionsAfterReload\n");
   return Promise.resolve()
     .then(addPrefixToDB)
     .then(loadTestFrame)
@@ -271,6 +283,7 @@ function testGethashCompletionsAfterReload() {
 }
 
 function runTest() {
+  dump("[Dimi]runTest...\n");
   Promise.resolve()
     .then(setup)
     .then(testGethash)
@@ -291,6 +304,8 @@ SimpleTest.waitForExplicitFinish();
 SpecialPowers.pushPrefEnv({"set": [
   ["browser.safebrowsing.malware.enabled", true]
 ]}, runTest);
+
+dump("[Dimi]End...\n");
 
 </script>
 </pre>
