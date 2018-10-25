@@ -1,0 +1,61 @@
+<aaahtml>
+<head>
+<meta name="referrer" content="none" />
+</head>
+<body>
+<h1>(Dimi) Safe Browsing Testing Links </h1>
+
+<iframe src="https://testsafebrowsing.appspot.com/">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+
+<p>Webpage Warnings</p>
+<ol>
+        <li>[A/W/M/L/C] Should show a phishing warning: <a href="//testsafebrowsing.appspot.com/s/phishing.html">link</a></li>
+        <li>[A/W/M/L/C/D] Should show a malware warning: <a href="//testsafebrowsing.appspot.com/s/malware.html">link</a></li>
+        <li>[A/W/M/L/C/D] Should show a malware warning due to a bad subresource: <a href="//testsafebrowsing.appspot.com/s/malware_in_iframe.html">link</a></li>
+        <li>[W/M/L/C] Should show a unwanted software warning: <a href="//testsafebrowsing.appspot.com/s/unwanted.html">link</a></li>
+        <li>[W/M/L/C/D] Should show a malware warning due to bad assets: [
+          <a href="//testsafebrowsing.appspot.com/s/image_small.html">small img</a>,
+          <a href="//testsafebrowsing.appspot.com/s/image_medium.html">medium img</a>,
+          <a href="//testsafebrowsing.appspot.com/s/image_large.html">large img</a>,
+          <a href="//testsafebrowsing.appspot.com/s/bad_css.html">css</a>,
+          <a href="//testsafebrowsing.appspot.com/s/bad_javascript.html">js</a>]</li>
+</ol>
+
+<p>Desktop Download Warnings</p>
+<ol>
+	<li>Dimi - Should show a "malicious" warning, based on content: <a href="https://dimil.github.com/download-protection/content.exe">link</a> [W/M] </li>
+	<li>Should show a "malicious" warning, based on content with https: <a href="https://testsafebrowsing.appspot.com/s/content.exe">link</a> [W/M] </li>
+	<li>Should show a "dangerous host" warning: <a href="https://testsafebrowsing.appspot.com/s/badrep.exe">link</a> [W] </li>
+	<li>Should show an "uncommon" warning, for .exe: <a href="/s/unknown.exe">link</a> [W] </li>
+	<li>Should show an "uncommon" warning, for https .exe: <a href="https://testsafebrowsing.appspot.com/s/unknown.exe">link</a> [W] </li>
+  <li>Should show an "potentially unwanted app" warning, for .exe: <a href="//testsafebrowsing.appspot.com/s/pua.exe">link</a> [W] </li>
+</ol>
+
+<p>IOS/OSX Warnings</p>
+<ol>
+  <li>Should show malware warning (IOS): <a href="//testsafebrowsing.appspot.com/apiv4/IOS/MALWARE/URL/">link</a></li>
+  <li>Should show social engineering warning (IOS): <a href="//testsafebrowsing.appspot.com/apiv4/IOS/SOCIAL_ENGINEERING/URL/">link</a></li>
+  <li>Should show malware warning (OSX): <a href="//testsafebrowsing.appspot.com/apiv4/OSX/MALWARE/URL/">link</a></li>
+  <li>Should show social engineering warning (OSX): <a href="//testsafebrowsing.appspot.com/apiv4/OSX/SOCIAL_ENGINEERING/URL/">link</a></li>
+</ol>
+
+<p>Permissions Blacklisting</p>
+<ol>
+  <li>Should autoblock notification request made on page load: <a href="https://testsafebrowsing.appspot.com/s/notif_pageload.html">link</a></li>
+  <li>Should autoblock geolocation request made on button click: <a href="https://testsafebrowsing.appspot.com/s/geoloc_click.html">link</a></li>
+  <li>Should autoblock notification request made on page load, and geolocation request made after a delay: <a href="https://testsafebrowsing.appspot.com/s/notif_geoloc_delay.html">link</a></li>
+  <li>Should autoblock all media requests made in a batch (10): <a href="https://testsafebrowsing.appspot.com/s/media_batch.html">link</a></li>
+  <li>Should not be autoblocked: <a href="https://testsafebrowsing.appspot.com/s/midi_click.html">link</a></li>
+</ol>
+
+
+
+<p>
+<i>Key: Windows, MacOS, Linux, ChromeOS, Android, DataSaver</i>
+</p>
+
+</body>
+</html>
+
