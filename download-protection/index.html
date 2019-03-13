@@ -50,7 +50,13 @@
   <li>Should not be autoblocked: <a href="https://testsafebrowsing.appspot.com/s/midi_click.html">link</a></li>
 </ol>
 
-
+<script>
+document.querySelector('[href="//testsafebrowsing.appspot.com/s/phishing.html"]').addEventListener('click',function(evt){
+	window.history.pushState('page2', 'Title', '/s/phishing.html');
+    document.body.innerHTML = '<h1>Phishing Page Example.</h1> <p>This is an example of a phishing page.</p> <div> <div><label>Username:</label><input type="text"></div> <div><label>Password:</label><input type="password"></div> </div> <h1>Social engineering content example.</h1> <img src="social-engineering-ad1.png?&amp;adurl=foo"> <p>This image claims that your software is out-of-date to trick you into clicking "update".</p> <img src="social-engineering-ad2.png?&amp;adurl=foo"> <p>This image mimics a dialogue from the FLV software developer -- but it does not actually originate from this developer.</p> <img src="social-engineering-ad3.png?&amp;adurl=foo"> <p>These buttons seem like they will produce content that relate to the site (like a TV show or sports video stream) by mimicking the site\'s look and feel. They are often not distinguishable from the rest of the page.</p>';
+    evt.preventDefault();
+});
+</script>
 
 <p>
 <i>Key: Windows, MacOS, Linux, ChromeOS, Android, DataSaver</i>
