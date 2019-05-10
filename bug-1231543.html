@@ -3,14 +3,22 @@
   </head>
   <body>
     <h1>Testing Output</h1>
+    <b>Referer</b><p id="d1"></p>
+    <b>document location href </b><p id="d2"></p>
+    <b>window location</b><p id="d3"></p>
+    <b>window parent location</b><p id="d4"></p>
+    <b>parent document url</b><p id="d5"></p>
+    <b>location href</b><p id="d6"></p>
   </body>
   <script>
 
-console.log("referer                :" + document.referrer + "\n");
-console.log("document location href :" + document.location.href + "\n");
-console.log("window location        :" + window.location + "\n");
-console.log("window parent location :" + window.parent.location + "\n");
-console.log("parent document url    :" + parent.document.URL + "\n");
+
+  document.getElementById("d1").innerHTML = document.referrer;
+  document.getElementById("d2").innerHTML = document.location.href;
+  document.getElementById("d3").innerHTML = window.location;
+  document.getElementById("d4").innerHTML = window.parent.location;
+  document.getElementById("d5").innerHTML = parent.document.URL;
+  document.getElementById("d6").innerHTML = location.href;
 
   </script>
 </html>
